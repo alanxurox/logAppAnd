@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">logAppAnd</string>
+
+    <string-array name="species_arrays">
+        <item>White Pine</item>
+        <item>Red Pine</item>
+        <item>Oak</item>
+        <item>Ash</item>
+        <item>Cherry</item>
+    </string-array>
+</resources>
