@@ -65,7 +65,7 @@ public class Log {
     }
 
     public double calculateVolume() {
-        return (3.14 * length * ((largeDiameter * largeDiameter + smallDiameter * smallDiameter)/2));
+        return (Math.PI * length * ((largeDiameter * largeDiameter + smallDiameter * smallDiameter)/2));
     }
 
     public double calculateDryMass() {
