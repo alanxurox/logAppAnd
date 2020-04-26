@@ -10,8 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +23,10 @@ public class MainActivity extends AppCompatActivity {
     private String speciesText;
     private Button button;
     private EditText smallDiameterText, largeDiameterText, lengthText, moistureText;
+    private TextView volume, mass;
     private Log log;
+    private DecimalFormat decimalFormat = new DecimalFormat("0.00");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         largeDiameterText = findViewById(R.id.editText3);
         lengthText = findViewById(R.id.editText4);
         moistureText = findViewById(R.id.editText5);
+        volume = findViewById(R.id.textView9);
+        mass = findViewById(R.id.textView11);
 
         //android.util.Log.d("Species Text", speciesText);
 
@@ -49,8 +56,15 @@ public class MainActivity extends AppCompatActivity {
 
                 //Volume is working! But how do I get Math.PI working?>?????
                 System.out.println(log.calculateVolume());
+
                 System.out.println(log.toString());
-                //log.calculateWeight();
+                System.out.println(log.getDensity());
+                System.out.println(log.calculateDryMass());
+                System.out.println(log.calculateTotalMass());
+
+                volume.setText("" + Double.parseDouble(decimalFormat.format(log.calculateVolume())) + " cubic ft");
+                mass.setText(""+ Double.parseDouble(decimalFormat.format(log.calculateTotalMass())) + " lbs");
+
             }
         });
     }
@@ -64,8 +78,10 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else if (text.equals(moistureText)){
+            Toast.makeText(getApplicationContext(), "Moisture is defaulted to 0%", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getApplicationContext(), "The " + text.toString() + " field is empty!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Please fill out all the fields", Toast.LENGTH_SHORT).show();
         }
 
         return value;

@@ -1,9 +1,11 @@
 package com.example.logappand;
 import java.lang.Math;
+import java.text.DecimalFormat;
 
 public class Log {
     private double largeDiameter, smallDiameter, length, moisture;
     private String species;
+
 
 
     public Log() {
@@ -64,6 +66,36 @@ public class Log {
 
     public double calculateVolume() {
         return (3.14 * length * ((largeDiameter * largeDiameter + smallDiameter * smallDiameter)/2));
+    }
+
+    public double calculateDryMass() {
+        return getDensity() * calculateVolume();
+    }
+
+    public double calculateTotalMass(){
+        return getMoisture() * calculateDryMass() / 100 + calculateDryMass();
+    }
+
+    public double getDensity(){
+        switch(species) {
+            case "White Pine":
+                return 26.0;
+
+            case "Red Pine":
+                return 28.0;
+
+            case "Oak":
+                return 43.0;
+
+            case "Ash":
+                return 39.0;
+
+            case "Cherry":
+                return 33.0;
+
+            default:
+                return 0;
+        }
     }
 
 
